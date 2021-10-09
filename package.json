@@ -1,0 +1,20 @@
+{
+  "name": "chatwithawslex",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "python -m http.server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fakhtar/ChatWithAWSLex.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fakhtar/ChatWithAWSLex/issues"
+  },
+  "homepage": "https://github.com/fakhtar/ChatWithAWSLex#readme"
+}
