@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/fakhtar/ChatWithAWSLex/issues"
   },
-  "homepage": "https://github.com/fakhtar/ChatWithAWSLex#readme"
+  "homepage": "https://github.com/fakhtar/ChatWithAWSLex#readme",
+  "dependencies": {
+    "aws-sdk": "^2.1004.0"
+  }
 }
