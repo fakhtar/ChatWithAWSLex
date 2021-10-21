@@ -1,7 +1,7 @@
 function asyncGetNextUtterance(message) {
     return new Promise((resolved, rejected) => {
         if (message.toLowerCase().includes('joke')) {
-            try { // Send the response to the API endpoint. read more about this ajax call here https://api.jquery.com/jquery.ajax/
+            // Send the response to the API endpoint. read more about this ajax call here https://api.jquery.com/jquery.ajax/
                 $.ajax({
                     url: "https://icanhazdadjoke.com/", //
                     type: 'GET',
@@ -15,10 +15,9 @@ function asyncGetNextUtterance(message) {
                         rejected(error);
                     }
                 });
-            } catch (error) {
-            }
+            
         } else {
-            try { // Send the response to the API endpoint. read more about this ajax call here https://api.jquery.com/jquery.ajax/
+            // Send the response to the API endpoint. read more about this ajax call here https://api.jquery.com/jquery.ajax/
                 $.ajax({
                     url: "https://uselessfacts.jsph.pl/random.json?language=en", //
                     type: 'GET',
@@ -29,8 +28,6 @@ function asyncGetNextUtterance(message) {
                         rejected(error);
                     }
                 });
-            } catch (error) {
-            }
         }
 
     }
@@ -96,7 +93,7 @@ function onRejected(error) {
     console.log(JSON.stringify(error));
 }
 
-function makeAjaxCall() {
+async function makeAjaxCall() {
     // store the message in the chat text box
     message = $("input[type=text][name=message]").val();
     // clear the message in the chat text box
@@ -105,7 +102,13 @@ function makeAjaxCall() {
     //we are now in posession of the message. Apeend the message HTML and the message to the chat window.
     displayRightMessage(message)
     // It is now time to make our API calls.
-    asyncGetNextUtterance(message).then(onFulFilled).catch(onRejected);
+    try {
+        const data = await asyncGetNextUtterance(message)
+        onFulFilled(data)
+    } catch (error) {
+        onRejected(error);
+    }
+    
     // scroll to the bottom of the message div
     $(".direct-chat-messages").animate({ scrollTop: $('.direct-chat-messages').prop("scrollHeight")}, 1000);
 }
